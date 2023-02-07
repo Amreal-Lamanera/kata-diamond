@@ -1,0 +1,1 @@
+{"version":1,"defects":{"DiamondTest::testAssertTrue":3,"DiamondTest::testOneChar":3,"DiamondTest::testSecondStep":3,"DiamondTest::testThirdStep":3,"DiamondTest::testFourthStep":3},"times":{"DiamondTest::testAssertTrue":0.003,"DiamondTest::testOneChar":0,"DiamondTest::testSecondStep":0,"DiamondTest::testThirdStep":0,"DiamondTest::testFourthStep":0}}
