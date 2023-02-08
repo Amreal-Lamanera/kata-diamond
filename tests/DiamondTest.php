@@ -38,14 +38,14 @@ class DiamondTest extends TestCase
 
     public function testFifthStep()
     {
-        $atteso = ['  A  ', ' B  B ', 'C    C', ' B  B ', '  A  '];
+        $atteso = ['  A  ', ' B B ', 'C   C', ' B B ', '  A  '];
         $esito = creaDiamante('C');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testSixthStep()
     {
-        $atteso = ['   A   ', '  B  B  ', ' C    C ', 'D      D', ' C    C ', '  B  B  ', '   A   '];
+        $atteso = ['   A   ', '  B B  ', ' C   C ', 'D     D', ' C   C ', '  B B  ', '   A   '];
         $esito = creaDiamante('D');
         $this->assertEquals($atteso, $esito);
     }
@@ -66,18 +66,18 @@ function creaDiamante($char)
             for ($j = 0; $j < count($chars)-1-$i; $j++) {
                 $el .= ' ';
             }
-            $temp = '';
-            for ($j = 0; $j < $i; $j++) {
-                $temp .= ' ';
-            }
             if (!$i) {
                 $temp = $el;
                 $el .= $chars[$i] . $temp;
             }
             else {
+                $temp = '';
+                for ($j = 0; $j < $i-1; $j++) {
+                    $temp .= ' ';
+                }
                 $el .= $chars[$i] . $temp;
                 $revEl = strrev($el);
-                $el .= $revEl;
+                $el .= ' ' . $revEl;
             }
             $result[] = $el;
         }

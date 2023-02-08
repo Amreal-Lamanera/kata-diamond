@@ -36,8 +36,10 @@ function creaDiamante($char)
 {
     if (strtoupper($char) === 'A') {
         return ['A'];
-    } else {
-//        return [' A ', 'B B', ' A '];
+    } elseif (strtoupper($char) === 'B') {
+        return [' A ', 'B B', ' A '];
+    }
+    else {
         $chars = range('A', $char);
         $result = array();
         for ($i = 0; $i < count($chars); $i++) {
@@ -45,18 +47,18 @@ function creaDiamante($char)
             for ($j = 0; $j < count($chars)-1-$i; $j++) {
                 $el .= 'x';
             }
-            $temp = '';
-            for ($j = 0; $j < $i; $j++) {
-                $temp .= 'x';
-            }
             if (!$i) {
                 $temp = $el;
                 $el .= $chars[$i] . $temp;
             }
             else {
+                $temp = '';
+                for ($j = 0; $j < $i-1; $j++) {
+                    $temp .= 'x';
+                }
                 $el .= $chars[$i] . $temp;
                 $revEl = strrev($el);
-                $el .= $revEl;
+                $el .= 'x' . $revEl;
             }
             $result[] = $el;
         }
