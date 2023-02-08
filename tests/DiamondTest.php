@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-include '../src/Diamond.php';
 
 class DiamondTest extends TestCase
 {
@@ -49,5 +48,17 @@ class DiamondTest extends TestCase
         $atteso = ['   A   ', '  B B  ', ' C   C ', 'D     D', ' C   C ', '  B B  ', '   A   '];
         $esito = Diamond::creaDiamante('D');
         $this->assertEquals($atteso, $esito);
+    }
+
+    public function testException1()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Diamond::creaDiamante('-');
+    }
+
+    public function testException2()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Diamond::creaDiamante('asd');
     }
 }

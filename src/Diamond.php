@@ -3,9 +3,15 @@
 
 class Diamond
 {
-    public static function creaDiamante($char): array
+    public static function creaDiamante($char)
     {
-        if (strtoupper($char) === 'A') {
+        if (!ctype_alpha($char)) {
+            throw new InvalidArgumentException('Carattere inserito non valido.');
+        } elseif (strlen($char) > 1) {
+            throw new InvalidArgumentException('Numero massimo di caratteri: 1.');
+        }
+        $char = strtoupper($char);
+        if ($char === 'A') {
             return ['A'];
         } else {
             $chars = range('A', $char);
