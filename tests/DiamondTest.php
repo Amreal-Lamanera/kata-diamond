@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+include '../src/Diamond.php';
 
 class DiamondTest extends TestCase
 {
@@ -11,27 +12,27 @@ class DiamondTest extends TestCase
 
     public function testOneChar()
     {
-        $esito = creaDiamante('A');
+        $esito = Diamond::creaDiamante('A');
         $atteso = ['A'];
         $this->assertEquals($atteso, $esito);
     }
 
     public function testSecondStep()
     {
-        $esito = creaDiamante('B');
+        $esito = Diamond::creaDiamante('B');
         $this->assertIsArray($esito);
     }
 
     public function testThirdStep()
     {
         $atteso = [' A ', 'B B', ' A '];
-        $esito = creaDiamante('B');
+        $esito = Diamond::creaDiamante('B');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testFourthStep()
     {
-        $esito = creaDiamante('a');
+        $esito = Diamond::creaDiamante('a');
         $atteso = ['A'];
         $this->assertEquals($atteso, $esito);
     }
@@ -39,53 +40,14 @@ class DiamondTest extends TestCase
     public function testFifthStep()
     {
         $atteso = ['  A  ', ' B B ', 'C   C', ' B B ', '  A  '];
-        $esito = creaDiamante('C');
+        $esito = Diamond::creaDiamante('C');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testSixthStep()
     {
         $atteso = ['   A   ', '  B B  ', ' C   C ', 'D     D', ' C   C ', '  B B  ', '   A   '];
-        $esito = creaDiamante('D');
+        $esito = Diamond::creaDiamante('D');
         $this->assertEquals($atteso, $esito);
-    }
-}
-
-function creaDiamante($char)
-{
-    if (strtoupper($char) === 'A') {
-        return ['A'];
-    } elseif (strtoupper($char) === 'B') {
-        return [' A ', 'B B', ' A '];
-    }
-    else {
-        $chars = range('A', $char);
-        $result = array();
-        for ($i = 0; $i < count($chars); $i++) {
-            $el = '';
-            for ($j = 0; $j < count($chars)-1-$i; $j++) {
-                $el .= ' ';
-            }
-            if (!$i) {
-                $temp = $el;
-                $el .= $chars[$i] . $temp;
-            }
-            else {
-                $temp = '';
-                for ($j = 0; $j < $i-1; $j++) {
-                    $temp .= ' ';
-                }
-                $el .= $chars[$i] . $temp;
-                $revEl = strrev($el);
-                $el .= ' ' . $revEl;
-            }
-            $result[] = $el;
-        }
-        $revResult = array_reverse($result);
-        array_shift($revResult);
-        foreach ($revResult as $value) {
-            $result[] = $value;
-        }
-        return $result;
     }
 }
