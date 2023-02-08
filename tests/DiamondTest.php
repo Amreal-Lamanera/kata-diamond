@@ -11,27 +11,27 @@ class DiamondTest extends TestCase
 
     public function testOneChar()
     {
-        $esito = Diamond::creaDiamante('A');
+        $esito = Diamond::create('A');
         $atteso = ['A'];
         $this->assertEquals($atteso, $esito);
     }
 
     public function testSecondStep()
     {
-        $esito = Diamond::creaDiamante('B');
+        $esito = Diamond::create('B');
         $this->assertIsArray($esito);
     }
 
     public function testThirdStep()
     {
         $atteso = [' A ', 'B B', ' A '];
-        $esito = Diamond::creaDiamante('B');
+        $esito = Diamond::create('B');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testFourthStep()
     {
-        $esito = Diamond::creaDiamante('a');
+        $esito = Diamond::create('a');
         $atteso = ['A'];
         $this->assertEquals($atteso, $esito);
     }
@@ -39,26 +39,26 @@ class DiamondTest extends TestCase
     public function testFifthStep()
     {
         $atteso = ['  A  ', ' B B ', 'C   C', ' B B ', '  A  '];
-        $esito = Diamond::creaDiamante('C');
+        $esito = Diamond::create('C');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testSixthStep()
     {
         $atteso = ['   A   ', '  B B  ', ' C   C ', 'D     D', ' C   C ', '  B B  ', '   A   '];
-        $esito = Diamond::creaDiamante('D');
+        $esito = Diamond::create('D');
         $this->assertEquals($atteso, $esito);
     }
 
     public function testException1()
     {
         $this->expectException(InvalidArgumentException::class);
-        Diamond::creaDiamante('-');
+        Diamond::create('-');
     }
 
     public function testException2()
     {
         $this->expectException(InvalidArgumentException::class);
-        Diamond::creaDiamante('asd');
+        Diamond::create('asd');
     }
 }

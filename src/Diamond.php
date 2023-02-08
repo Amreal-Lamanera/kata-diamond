@@ -3,7 +3,7 @@
 
 class Diamond
 {
-    public static function creaDiamante($char)
+    public static function create($char)
     {
         if (!ctype_alpha($char)) {
             throw new InvalidArgumentException('Carattere inserito non valido.');
