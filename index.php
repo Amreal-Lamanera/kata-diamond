@@ -20,11 +20,10 @@
         $char = trim(strtoupper($_POST['input']));
         if (!strlen($char) || strlen($char) > 1 || $char === 'A') {
             echo "<br/> <p>Input '$char' non valido</p> <br/>";
-        }
-        $matrix = generateCharactes($char);
-        foreach ($matrix as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                echo "$key $key2 $value2<br/>";
+        } else {
+            $result = creaDiamante($char);
+            foreach ($result as $value) {
+                echo "$value<br/>";
             }
         }
     }
@@ -33,9 +32,40 @@
 </html>
 
 <?php
-function generateCharactes($char) {
-    $matrix[0] = range('A', $char);
-    $matrix[1] = range($char, 'A');
-    return $matrix;
+function creaDiamante($char)
+{
+    if (strtoupper($char) === 'A') {
+        return ['A'];
+    } else {
+//        return [' A ', 'B B', ' A '];
+        $chars = range('A', $char);
+        $result = array();
+        for ($i = 0; $i < count($chars); $i++) {
+            $el = '';
+            for ($j = 0; $j < count($chars)-1-$i; $j++) {
+                $el .= 'x';
+            }
+            $temp = '';
+            for ($j = 0; $j < $i; $j++) {
+                $temp .= 'x';
+            }
+            if (!$i) {
+                $temp = $el;
+                $el .= $chars[$i] . $temp;
+            }
+            else {
+                $el .= $chars[$i] . $temp;
+                $revEl = strrev($el);
+                $el .= $revEl;
+            }
+            $result[] = $el;
+        }
+        $revResult = array_reverse($result);
+        array_shift($revResult);
+        foreach ($revResult as $value) {
+            $result[] = $value;
+        }
+        return $result;
+    }
 }
 ?>
